@@ -1,9 +1,8 @@
 const inputValue = document.getElementById("inputValue");
 const conversionType = document.getElementById("conversionType");
-const convertBtn = document.getElementById("convertBtn");
 const result = document.getElementById("result");
 
-convertBtn.addEventListener("click", () => {
+function convertUnits() {
   const value = parseFloat(inputValue.value);
 
   if (isNaN(value)) {
@@ -101,4 +100,10 @@ convertBtn.addEventListener("click", () => {
   }
 
   result.textContent = convertedValue.toFixed(2);
-});
+}
+
+// Convert while typing
+inputValue.addEventListener("input", convertUnits);
+
+// Convert when changing type
+conversionType.addEventListener("change", convertUnits);
