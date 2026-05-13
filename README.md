@@ -8,14 +8,14 @@ A professional and responsive Unit Converter web application built using HTML, C
 
 # 📌 Features | المميزات
 
-✅ Length Conversion
-✅ Weight Conversion
-✅ Temperature Conversion
-✅ Currency Conversion
-✅ Clean & Responsive UI
-✅ Beginner Friendly Project
-✅ Organized Code Structure
-✅ Future API Integration Support
+- ✅ Length Conversion
+- ✅ Weight Conversion
+- ✅ Temperature Conversion
+- ✅ Currency Conversion
+- ✅ Clean & Responsive UI
+- ✅ Beginner Friendly Project
+- ✅ Organized Code Structure
+- ✅ Future API Integration Support
 
 ---
 
