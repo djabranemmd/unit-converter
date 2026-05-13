@@ -1,1 +1,113 @@
-لهف 
+لهف <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Unit Converter</title>
+
+        <!-- CSS File -->
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <!-- Main Container -->
+        <div class="container">
+
+            <!-- Title -->
+            <h1>🌍 Unit Converter</h1>
+
+            <p class="subtitle">
+                Convert Length, Weight, Temperature, and Currency Easily
+            </p>
+
+            <!-- Converter Card -->
+            <div class="converter-card">
+
+                <!-- Input -->
+                <div class="input-group">
+                    <label for="inputValue">Enter Value</label>
+
+                    <input
+                        type="number"
+                        id="inputValue"
+                        placeholder="Enter number..." />
+                </div>
+
+                <!-- Conversion Type -->
+                <div class="input-group">
+                    <label for="conversionType">Conversion Type</label>
+
+                    <select id="conversionType">
+
+                        <optgroup label="📏 Length">
+                            <option value="km-m">Kilometer → Meter</option>
+                            <option value="m-km">Meter → Kilometer</option>
+
+                            <option value="cm-mm">Centimeter →
+                                Millimeter</option>
+                            <option value="mm-cm">Millimeter →
+                                Centimeter</option>
+
+                            <option value="inch-cm">Inch → Centimeter</option>
+                            <option value="cm-inch">Centimeter → Inch</option>
+                        </optgroup>
+
+                        <optgroup label="⚖️ Weight">
+                            <option value="kg-g">Kilogram → Gram</option>
+                            <option value="g-kg">Gram → Kilogram</option>
+
+                            <option value="lb-kg">Pound → Kilogram</option>
+                            <option value="kg-lb">Kilogram → Pound</option>
+                        </optgroup>
+
+                        <optgroup label="🌡️ Temperature">
+                            <option value="c-f">Celsius → Fahrenheit</option>
+                            <option value="f-c">Fahrenheit → Celsius</option>
+                        </optgroup>
+
+                        <optgroup label="💱 Currency">
+                            <option value="usd-eur">USD → EUR</option>
+                            <option value="eur-usd">EUR → USD</option>
+
+                            <option value="dzd-usd">DZD → USD</option>
+                            <option value="usd-dzd">USD → DZD</option>
+                        </optgroup>
+
+                    </select>
+                </div>
+
+                <!-- Convert Button -->
+                <button id="convertBtn">
+                    Convert
+                </button>
+
+                <!-- Result -->
+                <div class="result-box">
+
+                    <h2>Result</h2>
+
+                    <p id="result">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- JavaScript File -->
+        <script src="script.js"></script>
+
+    </body>
+</html>
