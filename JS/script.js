@@ -1,53 +1,60 @@
-const inputValue = document.getElementById("inputValue");
+const valueInput = document.getElementById("valueInput");
 const result = document.getElementById("result");
-const optionsBox = document.getElementById("optionsBox");
-const tabs = document.querySelectorAll(".tab");
+const optionsBox = document.getElementById("options");
+const cats = document.querySelectorAll(".cat");
+const swapBtn = document.getElementById("swapBtn");
 
-let currentCategory = "length";
-let currentType = null;
+let cat = "length";
+let type = null;
 
 /* DATA */
 const data = {
   length: [
-    { label: "Km → m", value: "km-m" },
-    { label: "m → Km", value: "m-km" },
-    { label: "cm → mm", value: "cm-mm" },
-    { label: "inch → cm", value: "inch-cm" },
+    ["km-m", "Km → m"],
+    ["m-km", "m → Km"],
+    ["cm-mm", "cm → mm"],
+    ["mm-cm", "mm → cm"],
+    ["inch-cm", "inch → cm"],
+    ["cm-inch", "cm → inch"],
   ],
   weight: [
-    { label: "kg → g", value: "kg-g" },
-    { label: "g → kg", value: "g-kg" },
-    { label: "lb → kg", value: "lb-kg" },
+    ["kg-g", "kg → g"],
+    ["g-kg", "g → kg"],
+    ["lb-kg", "lb → kg"],
+    ["kg-lb", "kg → lb"],
   ],
   temp: [
-    { label: "°C → °F", value: "c-f" },
-    { label: "°F → °C", value: "f-c" },
+    ["c-f", "°C → °F"],
+    ["f-c", "°F → °C"],
   ],
   currency: [
-    { label: "USD → EUR", value: "usd-eur" },
-    { label: "EUR → USD", value: "eur-usd" },
-    { label: "DZD → USD", value: "dzd-usd" },
+    ["usd-eur", "USD → EUR"],
+    ["eur-usd", "EUR → USD"],
+    ["usd-dzd", "USD → DZD"],
+    ["dzd-usd", "DZD → USD"],
   ],
 };
 
-/* render buttons */
-function renderOptions() {
+/* render options */
+function render() {
   optionsBox.innerHTML = "";
 
-  data[currentCategory].forEach((item) => {
+  data[cat].forEach(([key, label]) => {
     const btn = document.createElement("button");
-    btn.classList.add("option-btn");
-    btn.textContent = item.label;
-    btn.dataset.value = item.value;
+    btn.className = "opt";
+    btn.textContent = label;
 
-    btn.addEventListener("click", () => {
+    if (key === type) btn.classList.add("active");
+
+    btn.onclick = () => {
       document
-        .querySelectorAll(".option-btn")
+        .querySelectorAll(".opt")
         .forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      currentType = item.value;
+
+      type = key;
       convert();
-    });
+    };
 
     optionsBox.appendChild(btn);
   });
@@ -55,88 +62,107 @@ function renderOptions() {
 
 /* convert */
 function convert() {
-  const value = parseFloat(inputValue.value);
-
-  if (!currentType || isNaN(value)) {
+  const v = parseFloat(valueInput.value);
+  if (!type || isNaN(v)) {
     result.textContent = "0";
     return;
   }
 
-  let output = 0;
+  let o = 0;
 
-  switch (currentType) {
+  switch (type) {
     case "km-m":
-      output = value * 1000;
+      o = v * 1000;
       break;
     case "m-km":
-      output = value / 1000;
+      o = v / 1000;
       break;
+
     case "cm-mm":
-      output = value * 10;
+      o = v * 10;
       break;
     case "mm-cm":
-      output = value / 10;
+      o = v / 10;
       break;
+
     case "inch-cm":
-      output = value * 2.54;
+      o = v * 2.54;
       break;
     case "cm-inch":
-      output = value / 2.54;
+      o = v / 2.54;
       break;
 
     case "kg-g":
-      output = value * 1000;
+      o = v * 1000;
       break;
     case "g-kg":
-      output = value / 1000;
+      o = v / 1000;
       break;
+
     case "lb-kg":
-      output = value * 0.453592;
+      o = v * 0.453592;
       break;
     case "kg-lb":
-      output = value * 2.20462;
+      o = v * 2.20462;
       break;
 
     case "c-f":
-      output = (value * 9) / 5 + 32;
+      o = (v * 9) / 5 + 32;
       break;
     case "f-c":
-      output = ((value - 32) * 5) / 9;
+      o = ((v - 32) * 5) / 9;
       break;
 
     case "usd-eur":
-      output = value * 0.92;
+      o = v * 0.92;
       break;
     case "eur-usd":
-      output = value * 1.09;
+      o = v * 1.09;
+      break;
+
+    case "usd-dzd":
+      o = v * 135;
       break;
     case "dzd-usd":
-      output = value * 0.0074;
+      o = v * 0.0074;
       break;
-
-    default:
-      output = 0;
   }
 
-  result.textContent = output.toFixed(2);
+  result.textContent = o.toFixed(2);
 }
 
-/* tabs */
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("active"));
-    tab.classList.add("active");
+/* categories */
+cats.forEach((c) => {
+  c.onclick = () => {
+    cats.forEach((x) => x.classList.remove("active"));
+    c.classList.add("active");
 
-    currentCategory = tab.dataset.category;
-    currentType = null;
+    cat = c.dataset.cat;
+    type = null;
 
-    renderOptions();
+    render();
     result.textContent = "0";
-  });
+  };
 });
 
+/* FIXED SWAP (REAL LOGIC) */
+swapBtn.onclick = () => {
+  if (!type) return;
+
+  const reversed = type.split("-").reverse().join("-");
+
+  const exists = data[cat].find((x) => x[0] === reversed);
+
+  if (!exists) return; // safety
+
+  type = reversed;
+
+  render(); // re-render with correct active state
+  convert(); // keep result updated
+};
+
 /* live input */
-inputValue.addEventListener("input", convert);
+valueInput.addEventListener("input", convert);
 
 /* init */
-renderOptions();
+render();

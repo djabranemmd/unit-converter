@@ -3,50 +3,53 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Unit Converter</title>
+        <title>Liquid Unit Converter</title>
 
         <link rel="stylesheet" href="../css/style.css" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
             rel="stylesheet">
     </head>
 
     <body>
 
-        <div class="container">
+        <div class="bg"></div>
 
-            <h1>🌍 Unit Converter</h1>
-            <p class="subtitle">Fast & Modern Conversion Tool</p>
+        <div class="app">
 
-            <div class="converter-card">
+            <header>
+                <h1>Unit Converter</h1>
+                <p>Liquid Glass Experience</p>
+            </header>
 
-                <!-- CATEGORY BUTTONS -->
-                <div class="category-tabs">
+            <div class="glass">
 
-                    <button class="tab active" data-category="length">📏
-                        Length</button>
-                    <button class="tab" data-category="weight">⚖️
-                        Weight</button>
-                    <button class="tab" data-category="temp">🌡️ Temp</button>
-                    <button class="tab" data-category="currency">💱
-                        Money</button>
-
+                <!-- categories -->
+                <div class="categories">
+                    <button class="cat active" data-cat="length">Length</button>
+                    <button class="cat" data-cat="weight">Weight</button>
+                    <button class="cat" data-cat="temp">Temp</button>
+                    <button class="cat" data-cat="currency">Currency</button>
                 </div>
 
-                <!-- INPUT -->
-                <div class="input-group">
-                    <label>Value</label>
-                    <input type="number" id="inputValue"
+                <!-- input -->
+                <div class="field">
+                    <input type="number" id="valueInput"
                         placeholder="Enter value..." />
                 </div>
 
-                <!-- CONVERSION OPTIONS (dynamic) -->
-                <div class="options" id="optionsBox"></div>
+                <!-- swap -->
+                <div class="swap">
+                    <button id="swapBtn">⇄ Swap</button>
+                </div>
 
-                <!-- RESULT -->
-                <div class="result-box">
-                    <h2>Result</h2>
-                    <div id="result">0</div>
+                <!-- options -->
+                <div class="options" id="options"></div>
+
+                <!-- result -->
+                <div class="result">
+                    <span>Result</span>
+                    <h2 id="result">0</h2>
                 </div>
 
             </div>
